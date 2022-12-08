@@ -1,0 +1,81 @@
+080486e2 <func_to_pack>:
+ 80486e2:	3c e5                	cmp    $0xe5,%al
+ 80486e4:	8a f5                	mov    %ch,%dh
+ 80486e6:	89 58 a6             	mov    %ebx,-0x5a(%eax)
+ 80486e9:	26 9f                	es lahf
+ 80486eb:	69 6e 67 6d bf 26 8a 	imul   $0x8a26bf6d,0x67(%esi),%ebp
+ 80486f2:	d8 a3 2c 8a 15 b0    	fsubs  -0x4fea75d4(%ebx)
+ 80486f8:	20 97 f8 a5 2e 81    	and    %dl,-0x7ed15a08(%edi)
+ 80486fe:	b2 a1                	mov    $0xa1,%dl
+ 8048700:	28 90 f0 a9 21 8f    	sub    %dl,-0x70de5610(%eax)
+ 8048706:	d2 aa 2a 9d e6 b6    	shrb   %cl,-0x491962d6(%edx)
+ 804870c:	24 8f                	and    $0x8f,%al
+ 804870e:	3f                   	aas
+ 804870f:	af                   	scas   %es:(%edi),%eax
+
+
+				echo -ne "\xf0\xa9\x21\x8f\xd2\xaa\x2a\x9d\xe6\xb6\x24\x8f\x3f\xaf" |
+						ndisasm -u -
+				00000000  F0A9218FD2AA      lock test eax,0xaad28f21
+				00000006  2A9DE6B6248F      sub bl,[ebp-0x70db491a]
+				0000000C  3F                aas
+				0000000D  AF                scasd
+
+
+
+
+ 8048710:	2b 8a 9c bf 26 81    	sub    -0x7ed94064(%edx),%ecx
+ 8048716:	85 a2 2c 9c 6f 76    	test   %esp,0x766f9c2c(%edx)
+ 804871c:	65 70 8a             	gs jo  80486a9 <main+0x1e>
+ 804871f:	5e                   	pop    %esi
+ 8048720:	e0 2c                	loopne 804874e <func_to_pack+0x6c>
+ 8048722:	9e                   	sahf
+ 8048723:	62 e6                	(bad)
+ 8048725:	78 63                	js     804878a <func_to_pack+0xa8>
+ 8048727:	6f                   	outsl  %ds:(%esi),(%dx)
+ 8048728:	61                   	popa
+ 8048729:	e8 ee 68 67 79       	call   816bf01c <_end+0x796751cc>
+ 804872e:	d3 70 e9             	shll   %cl,-0x17(%eax)
+ 8048731:	26 84 e2             	es test %ah,%dl
+ 8048734:	3b 97 e6 3c 6b 6e    	cmp    0x6e6b3ce6(%edi),%edx
+ 804873a:	b4 6a                	mov    $0x6a,%ah
+ 804873c:	df 6c 5d 33          	fildll 0x33(%ebp,%ebx,2)
+ 8048740:	8a f9                	mov    %cl,%bh
+ 8048742:	a3 ee 26 8c e5       	mov    %eax,0xe58c26ee
+ 8048747:	22 9d 78 ab 60 d2    	and    -0x2d9f5488(%ebp),%bl
+ 804874d:	65 51                	gs push %ecx
+ 804874f:	ae                   	scas   %es:(%edi),%al
+ 8048750:	1b 71 a2             	sbb    -0x5e(%ecx),%esi
+ 8048753:	35 95 62 6b 69       	xor    $0x696b6295,%eax
+ 8048758:	6e                   	outsb  %ds:(%esi),(%dx)
+ 8048759:	e4 28                	in     $0x28,%al
+ 804875b:	89 62 ec             	mov    %esp,-0x14(%edx)
+ 804875e:	19 95 60 12 d2 f5    	sbb    %edx,-0xa2deda0(%ebp)
+ 8048764:	18 84 61 17 79 ea 82 	sbb    %al,-0x7d1586e9(%ecx,%eiz,2)
+ 804876b:	6b 05 49 e8 6b 6c 8d 	imul   $0xffffff8d,0x6c6be849,%eax
+
+
+				echo -ne "\x61\x17\x79\xea\x82\x6b\x05\x49\xe8\x6b\x6c\x8d" | ndisasm -u -         
+				00000000  61                popa
+				00000001  17                pop ss
+				00000002  79EA              jns 0xffffffee
+				00000004  82                db 0x82
+				00000005  6B0549E86B6C8D    imul eax,[dword 0x6c6be849],byte -0x73
+
+
+ 8048772:	13 91 90 89 e6 b4    	adc    -0x4b197670(%ecx),%edx
+ 8048778:	71 88                	jno    8048702 <func_to_pack+0x20>
+ 804877a:	7b ea                	jnp    8048766 <func_to_pack+0x84>
+ 804877c:	82 6b 05 43          	subb   $0x43,0x5(%ebx)
+ 8048780:	e8 6b 6c 8d 01       	call   991f3f0 <_end+0x18d55a0>
+ 8048785:	91                   	xchg   %eax,%ecx
+ 8048786:	90                   	nop
+ 8048787:	89 e6                	mov    %esp,%esi
+ 8048789:	b4 71                	mov    $0x71,%ah
+ 804878b:	aa                   	stos   %al,%es:(%edi)
+ 804878c:	c3                   	ret
+				echo -ne "\x71\xaa\xc3" | ndisasm -u -
+				00000000  71AA              jno 0xffffffac
+				00000002  C3                ret
+
+
