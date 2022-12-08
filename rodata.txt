@@ -1,0 +1,10 @@
+
+reverse-challenge:     file format elf32-i386
+
+Contents of section .rodata:
+ 8048b28 03000000 01000200 5b2d5d20 4e6f7065  ........[-] Nope
+ 8048b38 21005b2b 5d20476f 6f64206a 6f622120  !.[+] Good job! 
+ 8048b48 3b290072 005b2d5d 204e6f20 766d2070  ;).r.[-] No vm p
+ 8048b58 6c656173 65203b29 00000000 5b2d5d20  lease ;)....[-] 
+ 8048b68 596f7520 666f6f6c 2c206e6f 626f6479  You fool, nobody
+ 8048b78 20646562 7567206d 65212121 00         debug me!!!.   
